@@ -32,7 +32,7 @@ export class BallManager {
     }
 
     drawObstacles() {
-        this.ctx.fillStyle = 'black';
+        this.ctx.fillStyle = 'white';
         this.obstacles.forEach((obstacle) => {
             this.ctx.beginPath();
             this.ctx.arc(unpad(obstacle.x), unpad(obstacle.y), obstacle.radius, 0, Math.PI * 2);
