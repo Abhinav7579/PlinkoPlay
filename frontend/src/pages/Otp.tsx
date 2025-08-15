@@ -7,14 +7,40 @@ import axios from "axios"
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 import Loader from "../components/Loader"
+import { useSearchParams } from "react-router-dom"
 export default function Otp(){    
+  const [searchParams] = useSearchParams();
+ const email = searchParams.get("email");
     const navigate=useNavigate();
     const [otp,setotp]=useState("");
     const [loading, setLoading] = useState(false);
-    const handleSignin = async () => {
+    const handleOtp = async () => {
       setLoading(true);
-  };
+      try{
+        const response=await axios.post("http://localhost:8000/api/v1/user/signup/otpVerify",{
+          email:email,
+          otp:otp
+        })
+        if(response.status==200 && response.data.success){
+          alert(response.data.message);
+          navigate("/signin");
+        }
+        else {
+        alert(response.data.message);
+      }
+      }
+      catch(e){
+          if (axios.isAxiosError(e)) {
+    alert(e.response?.data?.message || "verification failed");
+  } else {
+    alert("verification failedd");
+  }
 
+      }
+      finally{
+        setLoading(false);
+      }
+  };
    if (loading) return <Loader />;
     return (
         <>
@@ -43,7 +69,7 @@ export default function Otp(){
       />
     </div>
         <div className="pt-4">
-          <Button children={"Verify"} onClick={handleSignin} className={"bg-black"}/>
+          <Button children={"Verify"} onClick={handleOtp} className={"bg-black"}/>
         </div>
         <BottomWarning label={"Resend the otp?"} buttonText={"resend"} to={"/"} />
       </div>

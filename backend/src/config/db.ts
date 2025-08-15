@@ -9,7 +9,7 @@ const userSchema=new Schema({
     email:{type:String, required: true, unique:true},
     password:{type:String, required: true},
     otp: { type: String }, 
-    otpExpiry: { type: Date }, 
+    otpExpiry: { type: Date },
     isVerified: { type: Boolean, default: false } 
 })
 const accountSchema=new Schema({
@@ -18,4 +18,4 @@ const accountSchema=new Schema({
 })
 
 export const userModel=model("user",userSchema);
-export const accountModel=model("user",accountSchema)
+export const accountModel=model("account",accountSchema)

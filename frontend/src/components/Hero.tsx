@@ -26,8 +26,6 @@ const Hero = () => {
             </button>
         
               <TrendingUp className="w-6 h-6" />
-              
-            
           </div>
 
           {/* Trust Indicators */}

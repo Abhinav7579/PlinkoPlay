@@ -36,7 +36,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userModel = void 0;
+exports.accountModel = exports.userModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -50,4 +50,9 @@ const userSchema = new mongoose_1.Schema({
     otpExpiry: { type: Date },
     isVerified: { type: Boolean, default: false }
 });
+const accountSchema = new mongoose_1.Schema({
+    userId: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'user', required: true },
+    balance: { type: Number, required: true }
+});
 exports.userModel = (0, mongoose_1.model)("user", userSchema);
+exports.accountModel = (0, mongoose_1.model)("account", accountSchema);

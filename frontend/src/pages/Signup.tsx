@@ -18,22 +18,25 @@ export default function Signup() {
       setLoading(true);
     try {
       
-      const response = await axios.post("https://flowbit.onrender.com/api/v1/user/signin", {
+      const response = await axios.post("http://localhost:8000/api/v1/user/signup", {
         name:name,
         email:username,
         password:password,
       });
         
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        alert("signin successful")
-        navigate("/dashboard");
+      if (response.status==200 && response.data.success) {
+        alert(response.data.message)
+        navigate(`/otp?email=${encodeURIComponent(username)}`);
       } else {
-        alert("Wrong credentials");
+        alert("wrong credentials");
       }
-    } catch (error) {
-      alert("Signin failed");
-    }
+    }catch (error) {
+  if (axios.isAxiosError(error)) {
+    alert(error.response?.data?.message || "Signup failed");
+  } else {
+    alert("Signup failed");
+  }
+}
     finally{
       setLoading(false);
     }

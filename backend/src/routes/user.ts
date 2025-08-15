@@ -12,15 +12,14 @@ const pass=process.env.GMAIL_PASS
 const JWT_PASS=process.env.JWT_PASS!
 import { usermiddleware } from "../middleware";
 //email send setup
-const transporter = nodemailer.createTransport({
+const transporter=nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'plinkoplay03@gmail.com',
         pass: pass
     }
 });
-const generateOTP =() => crypto.randomInt(100000, 999999).toString();
-
+const generateOTP =()=>crypto.randomInt(100000, 999999).toString();
 
 userRouter.post("/signup",async(req,res)=>{
     const parsed=userRequiredBody.safeParse(req.body);
@@ -86,7 +85,7 @@ userRouter.post("/signup/otpVerify",async(req,res)=>{
         })
         if (!user) return res.status(400).json({ message: 'User not found' });
         if (user.isVerified) return res.status(400).json({ message: 'User already verified' });
-        if (user.otp !== otp || user.otpExpiry! < new Date()) {
+        if (user.otp !== otp ||!user.otpExpiry|| user.otpExpiry < new Date()) {
             return res.status(400).json({ message: 'Invalid or expired OTP' });
         }
         const userid=user._id;
@@ -100,7 +99,7 @@ userRouter.post("/signup/otpVerify",async(req,res)=>{
         user.otpExpiry = undefined;
         await user.save();
 
-        res.json({
+        res.status(200).json({
   success: true,
   message: 'Email verified successfully.'
 });
