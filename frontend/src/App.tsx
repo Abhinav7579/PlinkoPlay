@@ -7,6 +7,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Otp from "./pages/Otp";
+import About from "./pages/About";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/simulation" element={<Simulation />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/about" element={<About/>}/>
       </Routes>
       
     </BrowserRouter>

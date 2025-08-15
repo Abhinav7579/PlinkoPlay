@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       <div className="relative h-screen bg-black overflow-hidden">
-        {/* Background with blur */}
+        
         <div
           className="absolute inset-0 bg-cover bg-center filter blur-lg scale-110 z-0"
           style={{
