@@ -153,6 +153,44 @@ userRouter.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         });
     }
 }));
+userRouter.post("/Userquery", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const parsed = zod_1.QueryRequiredbody.safeParse(req.body);
+    if (!parsed.success) {
+        res.json({
+            success: false,
+            message: "incorect entries"
+        });
+        return;
+    }
+    const { name, email, message } = parsed.data;
+    const user = yield db_1.userModel.findOne({
+        email: email
+    });
+    if (!user) {
+        res.json({
+            success: false,
+            message: "email not found"
+        });
+        return;
+    }
+    try {
+        yield db_1.queryModel.create({
+            name: name,
+            email: email,
+            message: message
+        });
+        res.status(200).json({
+            success: true,
+            message: "query successfully send. we will soon look out out at it"
+        });
+    }
+    catch (e) {
+        res.status(403).json({
+            success: false,
+            message: "error in sending the query " + e
+        });
+    }
+}));
 userRouter.get("/autoSignin", middleware_1.usermiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield db_1.userModel.findById(req.id).select("-password -otp -otpExpiry");

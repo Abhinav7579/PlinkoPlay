@@ -18,7 +18,7 @@ const Home = () => {
           }}
         ></div>
 
-        <div className="absolute inset-0 bg-black/50 z-0"></div>
+         <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/90"></div>
 
         {/* Foreground content */}
         <div className="relative z-10 flex flex-col min-h-screen">

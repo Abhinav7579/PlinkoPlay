@@ -17,5 +17,12 @@ const accountSchema=new Schema({
     balance:{type:Number,required:true}
 })
 
+const querySchema=new Schema({
+    name:String,
+    email:{type:String, required: true, unique:true},
+    message:{type:String, required: true}
+})
+
 export const userModel=model("user",userSchema);
-export const accountModel=model("account",accountSchema)
+export const accountModel=model("account",accountSchema);
+export const queryModel=model("query",querySchema);

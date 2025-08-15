@@ -1,7 +1,3 @@
-import React from "react";
-
-// About section for PlinkoPlay — safe & secure Plinko gambling website
-// TailwindCSS styles assumed. Replace placeholder images/links as needed.
 
 export default function About() {
   return (

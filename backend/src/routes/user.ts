@@ -2,8 +2,8 @@ import express from "express"
 const userRouter=express.Router()
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-import { userRequiredBody,SigninRequiredbody } from "../zod";
-import { userModel,accountModel } from "../config/db";
+import { userRequiredBody,SigninRequiredbody,QueryRequiredbody } from "../zod";
+import { userModel,accountModel,queryModel } from "../config/db";
 import bcrypt from "bcrypt"
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken"
@@ -143,6 +143,49 @@ userRouter.post("/signin",async(req,res)=>{
         }
 })
 
+userRouter.post("/Userquery",async(req,res)=>{
+const parsed=QueryRequiredbody.safeParse(req.body);
+    if(!parsed.success){
+        res.json({
+            success:false,
+            message:"incorect entries"
+        })
+        return;
+    }
+
+    const{name,email,message}=parsed.data;
+    const user=await userModel.findOne({
+        email:email
+    })
+    if(!user){
+         res.json({
+            success:false,
+            message:"email not found"
+        })
+        return;
+    }
+    try{
+    await queryModel.create({
+        name:name,
+        email:email,
+        message:message
+    })
+     res.status(200).json({
+        success:true,
+        message:"query successfully send. we will soon look out out at it"
+    })
+}
+catch(e){
+     res.status(403).json({
+        success:false,
+        message:"error in sending the query "+e
+    })
+
+}
+
+
+
+})
 userRouter.get("/autoSignin", usermiddleware, async (req, res) => {
   try {
     const user = await userModel.findById(req.id).select("-password -otp -otpExpiry");

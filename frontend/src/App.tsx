@@ -8,6 +8,8 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import Otp from "./pages/Otp";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Me from "./pages/Me";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +23,8 @@ function App() {
         <Route path="/simulation" element={<Simulation />} />
         <Route path="/game" element={<Game />} />
         <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/me" element={<Me/>}/>
       </Routes>
       
     </BrowserRouter>
