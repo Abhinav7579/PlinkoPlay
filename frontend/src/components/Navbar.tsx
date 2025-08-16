@@ -22,7 +22,7 @@ const navigate=useNavigate();
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             
-            <a href="features" className="text-black hover:text-primary-400 hover:scale-120 transition-colors">Add Money</a>
+            <a href="addmoney" className="text-black hover:text-primary-400 hover:scale-120 transition-colors">Add Money</a>
             <a href="about" className="text-black hover:text-primary-400 hover:scale-120 transition-colors">About</a>
             <a href="contact" className="text-black hover:text-primary-400 hover:scale-120 transition-colors">Contact Us</a>
             <a href="me" className="text-black hover:text-primary-400 hover:scale-120 transition-colors">Me</a>
@@ -45,7 +45,7 @@ const navigate=useNavigate();
             <nav className="flex flex-col space-y-4">
               
               
-              <a href="#features" className="text-black hover:text-primary-400 transition-colors">Add Money</a>
+              <a href="#addmoney" className="text-black hover:text-primary-400 transition-colors">Add Money</a>
               <a href="#about" className="text-black hover:text-primary-400 transition-colors">About</a>
               <a href="#contact" className="text-black hover:text-primary-400 transition-colors">Contact Us</a>
               <a href="#game" className="text-black hover:text-primary-400 transition-colors">Me</a>

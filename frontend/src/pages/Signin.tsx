@@ -4,6 +4,8 @@ import Heading from "../components/Heading"
 import Inputbox from "../components/Inputbox"
 import BottomWarning from "../components/Bottomwarning"
 import { useState } from "react"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios"
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
@@ -24,16 +26,16 @@ export default function Signin() {
         
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
-        alert("signin successful")
+        toast.success("signin successful")
         navigate("/home");
       } else {
-        alert("response.data.message");
+        toast.error("response.data.message");
       }
     } catch (error) {
         if (axios.isAxiosError(error)) {
-    alert(error.response?.data?.message || "Signin failed");
+    toast.success(error.response?.data?.message || "Signin failed");
   } else {
-    alert("Signin failed");
+    toast.error("Signin failed");
   }
     }
     finally{

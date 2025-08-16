@@ -4,6 +4,8 @@ import Heading from "../components/Heading"
 import BottomWarning from "../components/Bottomwarning"
 import { useState } from "react"
 import axios from "axios"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "../components/Header"
 import { useNavigate } from "react-router-dom"
 import Loader from "../components/Loader"
@@ -22,18 +24,18 @@ export default function Otp(){
           otp:otp
         })
         if(response.status==200 && response.data.success){
-          alert(response.data.message);
+          toast.success(response.data.message);
           navigate("/signin");
         }
         else {
-        alert(response.data.message);
+        toast.error(response.data.message);
       }
       }
       catch(e){
           if (axios.isAxiosError(e)) {
-    alert(e.response?.data?.message || "verification failed");
+    toast.error(e.response?.data?.message || "verification failed");
   } else {
-    alert("verification failedd");
+    toast.error("verification failedd");
   }
 
       }

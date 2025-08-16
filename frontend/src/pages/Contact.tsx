@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "../components/Loader"
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Contact = () => {
   const navigate=useNavigate();
   const [name,setname]=useState("");
@@ -17,18 +19,18 @@ const Contact = () => {
         message:query
        })
        if(response.status==200 && response.data.success){
-        alert("query submitted successfully");
+        toast.success("query submitted successfully");
         navigate("/home");
        }
        else{
-        alert(response.data.message);
+        toast.error(response.data.message);
        }
     }
     catch(e){
          if (axios.isAxiosError(e)) {
-    alert(e.response?.data?.message || "query failed");
+    toast.error(e.response?.data?.message || "query failed");
   } else {
-    alert("failed");
+    toast.error("failed");
   }
     }
      finally{

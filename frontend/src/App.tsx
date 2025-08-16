@@ -10,6 +10,8 @@ import Otp from "./pages/Otp";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Me from "./pages/Me";
+import Addmoney from "./pages/Addmoney";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <BrowserRouter>
@@ -25,9 +27,13 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/me" element={<Me/>}/>
+        <Route path="/addmoney" element={<Addmoney/>}/>
+
       </Routes>
+       <ToastContainer position="top-right" autoClose={3000} />
       
     </BrowserRouter>
+    
   );
 }
 
