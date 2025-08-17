@@ -21,7 +21,6 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="signup" className="text-black hover:text-primary-400 transition-colors">Play Game</a>
-            <a href="features" className="text-black hover:text-primary-400 transition-colors">Features</a>
             <a href="about" className="text-black hover:text-primary-400 transition-colors">About</a>
             <a href="contact" className="text-black hover:text-primary-400 transition-colors">Contact</a>
           </nav>
@@ -43,7 +42,6 @@ const Header = () => {
             <nav className="flex flex-col space-y-4">
               
               <a href="#game" className="text-black hover:text-primary-400 transition-colors">Play Game</a>
-              <a href="#features" className="text-black hover:text-primary-400 transition-colors">Features</a>
               <a href="#about" className="text-black hover:text-primary-400 transition-colors">About</a>
               <a href="#contact" className="text-black hover:text-primary-400 transition-colors">Contact</a>
               

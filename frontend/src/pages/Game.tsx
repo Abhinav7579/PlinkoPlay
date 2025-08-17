@@ -37,7 +37,7 @@ export function Game() {
       <Button
         className=" bg-green-500 w-[100px] mt-[300px]"
         onClick={async () => {
-          const response = await axios.post(`${baseURL}/game`, {
+          const response = await axios.post("http://localhost:8000/api/v1/game/bet/drop", {
             data: 1,
           });
           if (ballManager) {

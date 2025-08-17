@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Me = () => {
   // Example static data (replace with backend data later)
   const user = {
@@ -61,7 +63,7 @@ const Me = () => {
             <button className="bg-red-600 p-2 rounded-2xl font-extrabold text-white hover:bg-red-700 cursor-pointer hover:scale-105  "
             onClick={()=>{
                 localStorage.removeItem("token");
-                alert("succcessfully logout");
+                toast.success("succcessfully logout");
                 navigate("/")
             }} >logout</button>
           </div>
